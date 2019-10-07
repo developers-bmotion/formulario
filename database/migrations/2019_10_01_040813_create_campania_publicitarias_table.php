@@ -19,10 +19,10 @@ class CreateCampaniaPublicitariasTable extends Migration
             $table->string('marca');
             $table->text('objetivo');
 
-            $table->unsignedBigInteger('evento_id');
-            
-            $table->foreign('evento_id')->references('id')->on('eventos');
-            
+            $table->unsignedBigInteger('eventos_id');
+
+            $table->foreign('eventos_id')->references('id')->on('eventos');
+
             $table->timestamps();
         });
     }

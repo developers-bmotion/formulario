@@ -28,6 +28,7 @@ Vue.component('input-component', require('./components/InputComponent.vue').defa
 Vue.component('company-component', require('./components/CompanyComponent.vue').default);
 Vue.component('contact-component', require('./components/ContactComponent.vue').default);
 Vue.component('evento-component', require('./components/EventoComponent.vue').default);
+Vue.component('gira-component', require('./components/GiraComponent.vue').default);
 
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);

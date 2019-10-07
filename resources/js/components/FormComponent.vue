@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <label class="form-control-label" for="selectTipoEvento">Tipo de evento</label>
                         <select v-model="data.evento.tipos_eventos_id" class="form-control" id="selectTipoEvento">
-                            <option :value="null">Seleccione un tipo evento</option> 
+                            <option :value="null">Seleccione un tipo evento</option>
                             <option v-for="tipoEvento of dataGeneral.tipoEventos" :key="tipoEvento.id" :value="tipoEvento.id">{{ tipoEvento.nombre }}</option>
                         </select>
                     </div>
@@ -26,7 +26,7 @@
         <!--=====================================
             VENTA POR BOLETERIA
         ======================================-->
-        <form action="" method="POST" >
+        <form action="" method="POST" v-if="data.evento.tipos_eventos_id" >
 
             <div class="card">
                 <contact-component :contact="data.contact" ></contact-component>
@@ -36,14 +36,21 @@
             </div>
 
             <div class="card">
-                <evento-component 
-                    :evento="data.evento" 
-                    :paises="dataGeneral.paises" 
-                    :ventaBoleterias="data.ventaBoleterias" 
-                    :corporativos="data.corporativos" 
-                    :campaniaPublicitaria="data.campaniaPublicitaria" 
-                    :aforos="dataGeneral.aforos" 
+                <evento-component
+                    v-if="data.evento.tipos_eventos_id !== 5"
+                    :evento="data.evento"
+                    :paises="dataGeneral.paises"
+                    :ventaBoleterias="data.ventaBoleterias"
+                    :corporativos="data.corporativos"
+                    :campaniaPublicitaria="data.campaniaPublicitaria"
+                    :aforos="dataGeneral.aforos"
                     ></evento-component>
+                <gira-component
+                    v-if="data.evento.tipos_eventos_id === 5"
+                    :giras="data.giras"
+                    :paises="dataGeneral.paises"
+                    :aforos="dataGeneral.aforos"
+                ></gira-component>
             </div>
         </form>
     </div>
@@ -62,6 +69,7 @@
                     aforos: []
                 },
                 data: {
+                    giras: {paises_id: null, data: []},
                     evento: {
                         fecha: '',
                         hora: '',

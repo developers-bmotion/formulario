@@ -9,6 +9,7 @@ class VentaBoleteria extends Model
     protected $fillable = [
         "tiquetera_definida",
         "nombre_responsable",
-        "experiencia_responsable"
+        "experiencia_responsable",
+        "eventos_id"
     ];
 }

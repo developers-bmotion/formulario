@@ -6,7 +6,7 @@
         <!-- Card body -->
         <div class="card-body">
             <div class="row">
-                
+
                 <!-- venta boleterias -->
 
                 <div class="col-md-6" v-if="evento.tipos_eventos_id === 1">
@@ -130,7 +130,7 @@
                     <div class="form-group">
                         <label class="form-control-label">Aforo del evento</label>
                         <select class="form-control selectPais" id="selectTipoEvento" v-model="evento.aforos_id">
-                            <option :value="null">[ Seleccione un evento ]</option>
+                            <option :value="null">[ Seleccione un aforo ]</option>
                             <option :key="aforo.id" v-for="aforo of aforos" :value="aforo.id" v-text="aforo.rango" ></option>
                         </select>
                     </div>
@@ -164,9 +164,9 @@
             };
         },
         props: [
-            'evento', 
-            'paises', 
-            'aforos', 
+            'evento',
+            'paises',
+            'aforos',
             'ventaBoleterias',
             'corporativos',
             'campaniaPublicitaria'

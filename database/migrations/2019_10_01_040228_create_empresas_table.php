@@ -17,16 +17,18 @@ class CreateEmpresasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('direccion');
-            $table->string('sitioWeb');
+            $table->string('sitioWeb')->nullable();
             $table->string('documento');
 
             $table->unsignedBigInteger('tipos_companias_id');
             $table->unsignedBigInteger('tipos_documentos_personas_id')->nullable();
             $table->unsignedBigInteger('tipos_documentos_compania_id')->nullable();
+            $table->unsignedBigInteger('ciudades_id')->nullable();
 
             $table->foreign('tipos_companias_id')->references('id')->on('tipo_companias');
             $table->foreign('tipos_documentos_personas_id')->references('id')->on('tipo_documento_personas');
             $table->foreign('tipos_documentos_compania_id')->references('id')->on('tipo_documento_companias');
+            $table->foreign('ciudades_id')->references('idCiudades')->on('ciudades');
 
             $table->timestamps();
         });

@@ -9,7 +9,8 @@ class CampaniaPublicitaria extends Model
     protected $fillable = [
         'agencia',
         'marca',
-        'objetivo'
+        'objetivo',
+        'eventos_id'
     ];
-    
+
 }

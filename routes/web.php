@@ -16,4 +16,4 @@
 Route::get('/','Form\FormController@index')->name('index.form');
 
 
-Route::post('/ciudades','Form\FormController@getCiudades')->name('getCiudades');
+//Route::post('/ciudades','Form\FormController@getCiudades')->name('getCiudades');

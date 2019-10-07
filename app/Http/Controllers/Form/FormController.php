@@ -15,21 +15,15 @@ use App\Http\Controllers\Controller;
 class FormController extends Controller
 {
     public function index() {
-
+        /*
         $tipo_eventos = TipoEvento::all();
         $tipo_companias = TipoCompania::all();
         $tipo_documento_persona = TipoDocumentoPersona::all();
         $tipo_documento_empresa = TipoDocumentoCompania::all();
         $paises = Pais::all();
         $aforo  = Aforo::all();
-        return view('form.form-show', compact(
-            'tipo_eventos', 
-            'tipo_companias',
-            'paises', 
-            'tipo_documento_empresa', 
-            'tipo_documento_persona', 
-            'aforo'
-        ));
+        */
+        return view('form.form-show');
     }
 
     public function getCiudades(Request $request) {
@@ -62,7 +56,84 @@ class FormController extends Controller
     }
 
     public function solicitarEvento(Request $request) {
-        $roles = $request->input('campaniaPublicitaria');
-        return response()->json($request->all());
+        $evento = $request->input('evento');
+        $company = $request->input('company');
+        $contact = $request->input('contact');
+
+        $empresa = \App\Empresa::updateOrCreate($company);
+        $contacto = \App\Contacto::updateOrCreate($contact);
+        $evento['contactos_id'] = $contacto->id;
+        $evento['empresas_id'] = $empresa->id;
+
+        if ($evento["tipos_eventos_id"] !== 5) {
+            $evento = \App\Evento::updateOrCreate($evento);
+        } else {
+            $this->guardarGira($request, $contacto->id, $empresa->id);
+        }
+
+        /*
+        $corporativos = $request->input('corporativos');
+        $ventaBoleterias = $request->input('ventaBoleterias');
+        */
+
+        switch ($evento["tipos_eventos_id"]) {
+            case 1:
+                $this->guardarVentaBoleteria($request, $evento);
+                break;
+            case 2:
+                $this->guardarCorporativo($request, $evento);
+                break;
+            case 3:
+                $this->guardarCorporativo($request, $evento);
+                break;
+            case 4:
+                $this->guardarCampaniaPublicitaria($request, $evento);
+                break;
+            case 5:
+                # code...
+                break;
+            case 6:
+                # code...
+                break;
+        }
+
+        return response()->json([
+            "msg" => 'Success'
+        ], 201);
+    }
+
+    private function guardarVentaBoleteria(Request $request, $evento) {
+        $ventaBoleterias = $request->input('ventaBoleterias');
+        $ventaBoleterias['eventos_id'] = $evento->id;
+
+        \App\VentaBoleteria::updateOrCreate($ventaBoleterias);
+    }
+
+    private function guardarCorporativo(Request $request, $evento) {
+        $corporativos = $request->input('corporativos');
+        $corporativos['eventos_id'] = $evento->id;
+
+        \App\Corporativo::updateOrCreate($corporativos);
+    }
+
+    private function guardarCampaniaPublicitaria(Request $request, $evento) {
+        $campaniaPublicitaria = $request->input('campaniaPublicitaria');
+        $campaniaPublicitaria['eventos_id'] = $evento->id;
+
+        \App\CampaniaPublicitaria::updateOrCreate($campaniaPublicitaria);
+    }
+
+    private function guardarGira(Request $request, int $contactoId, int $empresaId){
+        $giras = $request->input('giras');
+
+        $gira = \App\Gira::create($giras);
+
+        foreach ($giras["data"] as $evento) {
+            $evento['contactos_id'] = $contactoId;
+            $evento['empresas_id'] = $empresaId;
+            $evento = \App\Evento::create($evento);
+
+            $gira->eventos()->attach($evento->id);
+        }
     }
 }

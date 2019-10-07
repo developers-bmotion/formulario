@@ -28,13 +28,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
     <link rel="stylesheet" href="/proyect-form/vendor/nucleo/css/nucleo.css" type="text/css">
-    <link rel="stylesheet" href="/proyect-form/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <link rel="stylesheet" href="/proyect-form/vendor/select2/dist/css/select2.min.css">
     --}}
 
     <!-- Page plugins -->
     <!-- Argon CSS -->
-    <link rel="stylesheet" href="/proyect-form/css/argon.css?v=1.1.0" type="text/css"> 
+    <link rel="stylesheet" href="/proyect-form/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="/proyect-form/css/argon.css?v=1.1.0" type="text/css">
 
     <link rel="stylesheet" href="/css/app.css">
 
@@ -68,7 +68,7 @@
         @yield('content')
     </div>
 </div>
-{{-- 
+{{--
 <!-- Argon Scripts -->
 <!-- Core -->
 <script src="/proyect-form/vendor/jquery/dist/jquery.min.js"></script>
@@ -95,7 +95,7 @@
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
         }
     });
-</script> 
+</script>
 --}}
 
 

@@ -8,6 +8,7 @@ class Corporativo extends Model
 {
     protected $fillable = [
         "cliente_final",
-        "objetivo_evento"
+        "objetivo_evento",
+        "eventos_id"
     ];
 }
