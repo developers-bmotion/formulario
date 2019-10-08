@@ -17,6 +17,7 @@
                             option-text="pais"
                             placeholder="Seleccione un pais"
                             @searchchange="getCiudades"
+                            :isError="validarForm && !giras.paises_id"
                         >
                         </model-list-select>
                     </div>
@@ -43,10 +44,15 @@
                                 <input class="form-control" v-model="evento.hora" type="time" placeholder="">
                             </td>
                             <td>
-                                <select class="form-control selectPais" id="selectTipoEvento" v-model="evento.aforos_id">
+                                <select
+                                :class="(validarForm&&!evento.aforos_id)?'is-invalid':''"
+                                class="form-control" id="selectTipoEvento" v-model="evento.aforos_id">
                                     <option :value="null">[ Seleccione un aforo ]</option>
                                     <option :key="aforo.id" v-for="aforo of aforos" :value="aforo.id" v-text="aforo.rango" ></option>
                                 </select>
+                                <div class="invalid-feedback">
+                                    Seleccione un aforo
+                                </div>
                             </td>
                             <td class="container-buscar">
                                 <model-list-select
@@ -56,11 +62,24 @@
                                     option-text="ciudad"
                                     placeholder="Seleccione una ciudad"
                                     style="position: absoluted"
+                                    :isError="validarForm && giras.paises_id && !evento.ciudades_id"
                                 >
                                 </model-list-select>
                             </td>
                             <td>
-                                <input class="form-control" v-model="evento.lugar" type="text" placeholder="">
+                                <!--<input-component
+                                    label="Lugar del evento"
+                                    id="txtEventoLugar"
+                                    pattern="all"
+                                    errorMsg="Ingrese un lugar del evento valido"
+                                    requiredMsg="El lugar del evento es valido"
+                                    :required="true"
+                                    :modelo="evento.lugar"
+                                    clases=""
+                                    @changeinput="evento.lugar = $event"
+                                ></input-component>
+                                -->
+                                    <input class="form-control" v-model="evento.lugar" type="text" placeholder="">
                             </td>
                             <td class="text-danger d-flex justify-content-center align-items-center">
                                 <p>
@@ -97,10 +116,17 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label">Aforo del evento</label>
-                                <select class="form-control selectPais" id="selectTipoEvento" v-model="evento.aforos_id">
+                                <select
+                                :class="(validarForm&&!evento.aforos_id)?'is-invalid':''"
+                                class="form-control"
+                                id="selectTipoEvento" v-model="evento.aforos_id"
+                                >
                                     <option :value="null">[ Seleccione un aforo ]</option>
                                     <option :key="aforo.id" v-for="aforo of aforos" :value="aforo.id" v-text="aforo.rango" ></option>
                                 </select>
+                                <div class="invalid-feedback">
+                                    Seleccione un aforo
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -112,15 +138,23 @@
                                         option-value="idCiudades"
                                         option-text="ciudad"
                                         placeholder="Seleccione una ciudad"
+                                        :isError="validarForm && giras.paises_id && !evento.ciudades_id"
                                     >
                                     </model-list-select>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-control-label">Lugar del evento</label>
-                                <input class="form-control" v-model="evento.lugar" type="text" placeholder="">
-                            </div>
+                            <input-component
+                                    label="Lugar del evento"
+                                    id="txtEventoLugar"
+                                    pattern="all"
+                                    errorMsg="Ingrese un lugar del evento valido"
+                                    requiredMsg="El lugar del evento es valido"
+                                    :required="true"
+                                    :modelo="evento.lugar"
+                                    clases=""
+                                    @changeinput="evento.lugar = $event"
+                                ></input-component>
                         </div>
 
                     </div>
@@ -135,7 +169,7 @@
                 <!-- Información del evento en pantalla pequeñas -->
 
                 <div class="text-center w-100">
-                    <button v-if="this.giras.paises_id && this.giras.data.length > 1" class="m-auto btn btn-primary" @click.prevent="enviarSolicitudEvento">Enviar Información</button>
+                    <button v-if="this.giras.paises_id && this.giras.data.length > 1" class="m-auto btn btn-primary">Enviar Información</button>
                 </div>
 
             </div>
@@ -157,7 +191,8 @@
         props: [
             'paises',
             'aforos',
-            'giras'
+            'giras',
+            'validarForm'
         ],
         created() {
             this.addEvento();

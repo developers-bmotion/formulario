@@ -7,34 +7,69 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-control-label">Nombre</label>
-                        <input v-model="contact.nombre" class="form-control" type="text" placeholder="" name="contacto_nombre">
-                    </div>
+                    <input-component
+                        label="Nombres"
+                        id="txtContactoNombre"
+                        pattern="alf"
+                        errorMsg="Ingrese un nombre valido"
+                        requiredMsg="Nombre requerido"
+                        :required="true"
+                        :modelo="contact.nombre"
+                        clases=""
+                        @changeinput="contact.nombre = $event"
+                    ></input-component>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-control-label">Apellidos</label>
-                        <input v-model="contact.apellido" class="form-control" type="text" placeholder="" name="contacto_apellido">
-                    </div>
+                    <input-component
+                        label="Apellidos"
+                        id="txtContactoApellido"
+                        pattern="alf"
+                        errorMsg="Ingrese un apellido valido"
+                        requiredMsg="Apellido requerido"
+                        :required="true"
+                        :modelo="contact.apellido"
+                        clases=""
+                        @changeinput="contact.apellido = $event"
+                    ></input-component>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-control-label">Télefono</label>
-                        <input v-model="contact.telefono" class="form-control" type="text" placeholder="" name="contacto_telefono">
-                    </div>
+                    <input-component
+                        label="Telefono"
+                        id="txtContactoTelefono"
+                        pattern="num"
+                        errorMsg="Ingrese un telefono valido"
+                        requiredMsg="Telefono requerido"
+                        :required="true"
+                        :modelo="contact.telefono"
+                        clases=""
+                        @changeinput="contact.telefono = $event"
+                    ></input-component>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-control-label">Celular</label>
-                        <input v-model="contact.celular" class="form-control" type="text" placeholder="" name="contacto_celular">
-                    </div>
+                    <input-component
+                        label="Celular"
+                        id="txtContactoCelular"
+                        pattern="num"
+                        errorMsg="Ingrese un celular valido"
+                        requiredMsg="Celular requerido"
+                        :required="true"
+                        :modelo="contact.celular"
+                        clases=""
+                        @changeinput="contact.celular = $event"
+                    ></input-component>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-control-label">Email</label>
-                        <input v-model="contact.email" class="form-control" type="text" placeholder="" name="contacto_email">
-                    </div>
+                    <input-component
+                        label="Email"
+                        id="txtContactoEmail"
+                        pattern="email"
+                        errorMsg="Ingrese un email valido"
+                        requiredMsg="Email requerido"
+                        :required="true"
+                        :modelo="contact.email"
+                        clases=""
+                        @changeinput="contact.email = $event"
+                    ></input-component>
                 </div>
             </div>
         </div>

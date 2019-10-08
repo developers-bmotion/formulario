@@ -15,14 +15,14 @@ class CreateVentaBoleteriasTable extends Migration
     {
         Schema::create('venta_boleterias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('tiquetera_definida');
+            $table->string('tiquetera_definida')->nullable();
             $table->string('nombre_responsable');
             $table->string('experiencia_responsable');
-            
+
             $table->unsignedBigInteger('eventos_id');
-            
+
             $table->foreign('eventos_id')->references('id')->on('eventos');
-            
+
             $table->timestamps();
         });
     }

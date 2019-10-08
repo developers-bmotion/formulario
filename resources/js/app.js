@@ -21,8 +21,7 @@ import 'vue-search-select/dist/VueSearchSelect.css'
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-window.eventBus = new Vue;
-
+window.eventBus = new Vue();
 Vue.component('form-component', require('./components/FormComponent.vue').default);
 Vue.component('input-component', require('./components/InputComponent.vue').default);
 Vue.component('company-component', require('./components/CompanyComponent.vue').default);
@@ -31,7 +30,7 @@ Vue.component('evento-component', require('./components/EventoComponent.vue').de
 Vue.component('gira-component', require('./components/GiraComponent.vue').default);
 
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

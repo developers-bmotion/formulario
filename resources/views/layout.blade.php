@@ -12,7 +12,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  -->
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -34,8 +34,7 @@
     <!-- Page plugins -->
     <!-- Argon CSS -->
     <link rel="stylesheet" href="/proyect-form/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-    <link rel="stylesheet" href="/proyect-form/css/argon.css?v=1.1.0" type="text/css">
-
+    <link rel="stylesheet" href="/proyect-form/css/argon.min.css" type="text/css">
     <link rel="stylesheet" href="/css/app.css">
 
 </head>
@@ -100,7 +99,6 @@
 
 
 <script src="/js/app.js"></script>
-
 @stack('js')
 </body>
 

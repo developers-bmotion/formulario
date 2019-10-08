@@ -20,61 +20,117 @@
                 </div>
 
                 <div class="col-md-6" id="tiqueta_definida" v-if="tiqueteraSelect && evento.tipos_eventos_id === 1">
-                    <div class="form-group">
-                        <label class="form-control-label" >¿Cuál es la tiquetera definida?</label>
-                        <input class="form-control" v-model="ventaBoleterias.tiquetera_definida" type="text" placeholder="">
-                    </div>
+                    <input-component
+                        label="¿Cuál es la tiquetera definida?"
+                        id="txtVentaBoleteriaTiqueteraDefinida"
+                        pattern="all"
+                        errorMsg="Ingrese la tiquetera definida"
+                        requiredMsg="Ingrese la tiquetera definida"
+                        :required="true"
+                        :modelo="ventaBoleterias.tiquetera_definida"
+                        clases=""
+                        @changeinput="ventaBoleterias.tiquetera_definida = $event"
+                    ></input-component>
                 </div>
 
                 <div class="col-md-6" v-if="evento.tipos_eventos_id === 1">
-                    <div class="form-group">
-                        <label class="form-control-label">Nombre del responsable del evento</label>
-                        <input class="form-control" v-model="ventaBoleterias.nombre_responsable" type="text" placeholder="">
-                    </div>
+                    <input-component
+                        label="Nombre del responsable del evento"
+                        id="txtVentaBoleteriaNombreResponsable"
+                        pattern="alf"
+                        errorMsg="Ingrese un nombre de responsable valido"
+                        requiredMsg="Ingrese el nombre de responsable"
+                        :required="true"
+                        :modelo="ventaBoleterias.nombre_responsable"
+                        clases=""
+                        @changeinput="ventaBoleterias.nombre_responsable = $event"
+                    ></input-component>
                 </div>
 
                 <div class="col-md-6" v-if="evento.tipos_eventos_id === 1">
-                    <div class="form-group">
-                        <label class="form-control-label">Describa la experiencia del responsable</label>
-                        <input class="form-control" v-model="ventaBoleterias.experiencia_responsable" type="text" placeholder="">
-                    </div>
+                    <input-component
+                        label="Describa la experiencia del responsable"
+                        id="txtVentaBoleteriaExperienciaResponsable"
+                        pattern="alf"
+                        errorMsg="Ingrese una experiencia del responsable valida"
+                        requiredMsg="Ingrese la experiencia del responsable"
+                        :required="true"
+                        :modelo="ventaBoleterias.experiencia_responsable"
+                        clases=""
+                        @changeinput="ventaBoleterias.experiencia_responsable = $event"
+                    ></input-component>
                 </div>
                 <!-- end venta boleterias -->
 
                 <!-- gubernamental o corporativo -->
                 <div class="col-md-6" v-if="evento.tipos_eventos_id === 2 || evento.tipos_eventos_id === 3">
-                    <div class="form-group">
-                        <label class="form-control-label">Cliente final</label>
-                        <input class="form-control" v-model="corporativos.cliente_final" type="text" placeholder="">
-                    </div>
+                    <input-component
+                        label="Cliente final"
+                        id="txtGobernamentalCliente"
+                        pattern="alf"
+                        errorMsg="Ingrese un nombre del cliente final valido"
+                        requiredMsg="El nombre del cliente final es requerido"
+                        :required="true"
+                        :modelo="corporativos.cliente_final"
+                        clases=""
+                        @changeinput="corporativos.cliente_final = $event"
+                    ></input-component>
                 </div>
                 <div class="col-md-6" v-if="evento.tipos_eventos_id === 2 || evento.tipos_eventos_id === 3">
-                    <div class="form-group">
-                        <label class="form-control-label">Objetivo del evento</label>
-                        <textarea class="form-control" v-model="corporativos.objetivo_evento" type="text" placeholder="">
-                        </textarea>
-                    </div>
+                    <input-component
+                        label="Objetivo del evento"
+                        id="txtGobernamentalObjetivo"
+                        pattern="alf"
+                        errorMsg="Ingrese el objetivo del evento valido"
+                        requiredMsg="El objetivo del evento es requerido"
+                        :required="true"
+                        :modelo="corporativos.objetivo_evento"
+                        clases=""
+                        @changeinput="corporativos.objetivo_evento = $event"
+                        :textArea="true"
+                    ></input-component>
                 </div>
                 <!-- end gubernamental o corporativo -->
 
                 <!-- campaña publicitaria -->
                 <div class="col-md-6" v-if="evento.tipos_eventos_id === 4">
-                    <div class="form-group">
-                        <label class="form-control-label">Agencia</label>
-                        <input class="form-control" v-model="campaniaPublicitaria.agencia" type="text" placeholder="">
-                    </div>
+                    <input-component
+                        label="Agencia"
+                        id="txtCampaniaAgencia"
+                        pattern="alf"
+                        errorMsg="Ingrese una agencia valida"
+                        requiredMsg="la agencia es requerida"
+                        :required="true"
+                        :modelo="campaniaPublicitaria.agencia"
+                        clases=""
+                        @changeinput="campaniaPublicitaria.agencia = $event"
+                    ></input-component>
                 </div>
                 <div class="col-md-6" v-if="evento.tipos_eventos_id === 4">
-                    <div class="form-group">
-                        <label class="form-control-label">Marca</label>
-                        <input class="form-control" v-model="campaniaPublicitaria.marca" type="text" placeholder="">
-                    </div>
+                    <input-component
+                        label="Marca"
+                        id="txtCampaniaMarca"
+                        pattern="alf"
+                        errorMsg="Ingrese una marca valida"
+                        requiredMsg="la marca es requerida"
+                        :required="true"
+                        :modelo="campaniaPublicitaria.marca"
+                        clases=""
+                        @changeinput="campaniaPublicitaria.marca = $event"
+                    ></input-component>
                 </div>
                 <div class="col-md-6" v-if="evento.tipos_eventos_id === 4">
-                    <div class="form-group">
-                        <label class="form-control-label">Objetivo de la campaña</label>
-                        <input class="form-control" v-model="campaniaPublicitaria.objetivo" type="text" placeholder="">
-                    </div>
+                    <input-component
+                        label="Objetivo de la campaña"
+                        id="txtCampaniaObjetivo"
+                        pattern="alf"
+                        errorMsg="Ingrese un objetivo valido de la campaña"
+                        requiredMsg="El objetivo de la campaña es requerido"
+                        :required="true"
+                        :modelo="campaniaPublicitaria.objetivo"
+                        clases=""
+                        @changeinput="campaniaPublicitaria.objetivo = $event"
+                    ></input-component>
                 </div>
                 <!-- end campaña publicitaria -->
 
@@ -102,6 +158,7 @@
                             option-text="pais"
                             placeholder="Seleccione un pais"
                             @searchchange="getCiudades"
+                            :isError="validarForm && !paisSelect"
                         >
                         </model-list-select>
                     </div>
@@ -116,27 +173,38 @@
                             option-value="idCiudades"
                             option-text="ciudad"
                             placeholder="Seleccione una ciudad"
+                            :isError="validarForm && paisSelect && !evento.ciudades_id"
                         >
                         </model-list-select>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-control-label">Lugar del evento</label>
-                        <input class="form-control" v-model="evento.lugar" type="text" placeholder="">
-                    </div>
+                    <input-component
+                        label="Lugar del evento"
+                        id="txtEventoLugar"
+                        pattern="all"
+                        errorMsg="Ingrese un lugar del evento valido"
+                        requiredMsg="El lugar del evento es valido"
+                        :required="true"
+                        :modelo="evento.lugar"
+                        clases=""
+                        @changeinput="evento.lugar = $event"
+                    ></input-component>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-control-label">Aforo del evento</label>
-                        <select class="form-control selectPais" id="selectTipoEvento" v-model="evento.aforos_id">
+                        <select :class="(validarForm&&!evento.aforos_id)?'is-invalid':''" class="form-control selectPais" id="selectTipoEvento" v-model="evento.aforos_id">
                             <option :value="null">[ Seleccione un aforo ]</option>
                             <option :key="aforo.id" v-for="aforo of aforos" :value="aforo.id" v-text="aforo.rango" ></option>
                         </select>
+                        <div class="invalid-feedback">
+                            Seleccione un aforo
+                        </div>
                     </div>
                 </div>
                 <div class="m-auto">
-                    <button class="m-auto btn btn-primary" @click.prevent="enviarSolicitudEvento">Enviar Información</button>
+                    <button class="m-auto btn btn-primary">Enviar Información</button>
                 </div>
             </div>
         </div>
@@ -169,7 +237,8 @@
             'aforos',
             'ventaBoleterias',
             'corporativos',
-            'campaniaPublicitaria'
+            'campaniaPublicitaria',
+            'validarForm'
         ],
         methods: {
             getCiudades: function () {

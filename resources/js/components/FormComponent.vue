@@ -26,13 +26,20 @@
         <!--=====================================
             VENTA POR BOLETERIA
         ======================================-->
-        <form action="" method="POST" v-if="data.evento.tipos_eventos_id" >
+        <form @submit.prevent="validarEvento" method="POST" novalidate v-if="data.evento.tipos_eventos_id" >
 
             <div class="card">
                 <contact-component :contact="data.contact" ></contact-component>
             </div>
             <div class="card">
-                <company-component :company="data.company" :tipoCompanias="dataGeneral.tipoCompanias" :paises="dataGeneral.paises" :tipoDocumentoEmpresas="dataGeneral.tipoDocumentoEmpresas" :tipoDocumentoPersonas="dataGeneral.tipoDocumentoPersonas" ></company-component>
+                <company-component
+                    :company="data.company"
+                    :tipoCompanias="dataGeneral.tipoCompanias"
+                    :paises="dataGeneral.paises"
+                    :tipoDocumentoEmpresas="dataGeneral.tipoDocumentoEmpresas"
+                    :tipoDocumentoPersonas="dataGeneral.tipoDocumentoPersonas"
+                    :validarForm="dataGeneral.validarForm"
+                ></company-component>
             </div>
 
             <div class="card">
@@ -44,12 +51,14 @@
                     :corporativos="data.corporativos"
                     :campaniaPublicitaria="data.campaniaPublicitaria"
                     :aforos="dataGeneral.aforos"
+                    :validarForm="dataGeneral.validarForm"
                     ></evento-component>
                 <gira-component
                     v-if="data.evento.tipos_eventos_id === 5"
                     :giras="data.giras"
                     :paises="dataGeneral.paises"
                     :aforos="dataGeneral.aforos"
+                    :validarForm="dataGeneral.validarForm"
                 ></gira-component>
             </div>
         </form>
@@ -66,7 +75,8 @@
                     tipoDocumentoEmpresas: [],
                     tipoDocumentoPersonas: [],
                     tipoEventos: [],
-                    aforos: []
+                    aforos: [],
+                    validarForm: false,
                 },
                 data: {
                     giras: {paises_id: null, data: []},
@@ -84,16 +94,17 @@
                         direccion: '',
                         sitioWeb: '',
                         documento: '',
-                        tipos_companias_id: '',
-                        tipos_documentos_personas_id: '',
-                        tipos_documentos_compania_id: '',
+                        tipos_companias_id: null,
+                        tipos_documentos_personas_id: null,
+                        tipos_documentos_compania_id: null,
                         ciudades_id: null
                     },
                     contact: {
                         nombre: '',
                         apellido: '',
                         telefono: '',
-                        celular: ''
+                        celular: '',
+                        email: ''
                     },
                     ventaBoleterias: {
                         tiquetera_definida: '',
@@ -130,14 +141,32 @@
                     console.log(err);
                 });
 
-            eventBus.$on('solicitarEvento', function () {
+        },
+        methods: {
+            enviarEvento() {
+                const lista = document.querySelectorAll('.form-control.is-invalid,.dropdown.error');
+                if (lista.length > 0) {
+                    lista[0].focus();
+                    return;
+                }
                 axios.post('/api/solicitarEvento', this.data).then(res => {
-                    console.log(res)
+                    if (res.status === 201) {
+                        alert("Se ha enviado tú solicitud");
+                        this.dataGeneral.validarForm = false;
+                    }
+                    console.log(res);
                 }).catch(err => {
                     console.log(err);
                 });
-            }.bind(this));
 
+            },
+            validarEvento() {
+                this.dataGeneral.validarForm = true;
+                eventBus.$emit('validar');
+                setTimeout(() => {
+                    this.enviarEvento();
+                }, 250);
+            }
         }
     }
 </script>
