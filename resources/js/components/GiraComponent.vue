@@ -9,7 +9,7 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label class="form-control-label">País de la compañía</label>
+                        <label class="form-control-label">País de la compañía <span class="text-danger">*</span></label>
                         <model-list-select
                             :list="paises"
                             v-model="giras.paises_id"
@@ -115,7 +115,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-control-label">Aforo del evento</label>
+                                <label class="form-control-label">Aforo del evento <span class="text-danger">*</span></label>
                                 <select
                                 :class="(validarForm&&!evento.aforos_id)?'is-invalid':''"
                                 class="form-control"
@@ -131,7 +131,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-control-label">Ciudades del evento</label>
+                                <label class="form-control-label">Ciudades del evento <span class="text-danger">*</span></label>
                                 <model-list-select
                                         :list="ciudades"
                                         v-model="evento.ciudades_id"

@@ -64,6 +64,9 @@
             case 'all':
               this.validator = RegExp('.+');
               break;
+            case 'url':
+              this.validator = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+              break;
             default:
               this.validator = RegExp(this.pattern);
           }

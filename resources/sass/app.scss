@@ -14,3 +14,13 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+
+.ui.selection.dropdown.error{
+  background-color: white !important;
+  border-color: var(--danger) !important;
+}
+
+.ui.dropdown.error, .ui.dropdown.error>.default.text, .ui.dropdown.error>.text{
+  color:#8898aa !important;
+}

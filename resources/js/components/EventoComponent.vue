@@ -119,7 +119,7 @@
                         @changeinput="campaniaPublicitaria.marca = $event"
                     ></input-component>
                 </div>
-                <div class="col-md-6" v-if="evento.tipos_eventos_id === 4">
+                <div class="col-md-12" v-if="evento.tipos_eventos_id === 4">
                     <input-component
                         label="Objetivo de la campaña"
                         id="txtCampaniaObjetivo"
@@ -130,6 +130,7 @@
                         :modelo="campaniaPublicitaria.objetivo"
                         clases=""
                         @changeinput="campaniaPublicitaria.objetivo = $event"
+                        :textArea="true"
                     ></input-component>
                 </div>
                 <!-- end campaña publicitaria -->
@@ -150,7 +151,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-control-label">País de la compañía</label>
+                        <label class="form-control-label">País de la compañía <span class="text-danger">*</span></label>
                         <model-list-select
                             :list="paises"
                             v-model="paisSelect"
@@ -166,7 +167,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-control-label">Ciudad de la compañía</label>
+                        <label class="form-control-label">Ciudad de la compañía <span class="text-danger">*</span></label>
                         <model-list-select
                             :list="ciudades"
                             v-model="evento.ciudades_id"
@@ -193,7 +194,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-control-label">Aforo del evento</label>
+                        <label class="form-control-label">Aforo del evento <span class="text-danger">*</span></label>
                         <select :class="(validarForm&&!evento.aforos_id)?'is-invalid':''" class="form-control selectPais" id="selectTipoEvento" v-model="evento.aforos_id">
                             <option :value="null">[ Seleccione un aforo ]</option>
                             <option :key="aforo.id" v-for="aforo of aforos" :value="aforo.id" v-text="aforo.rango" ></option>
@@ -203,7 +204,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="m-auto">
+                <div class="text-center w-100">
                     <button class="m-auto btn btn-primary">Enviar Información</button>
                 </div>
             </div>

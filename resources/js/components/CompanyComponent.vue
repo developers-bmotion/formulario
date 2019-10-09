@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-control-label">Tipo compañia</label>
+                        <label class="form-control-label">Tipo compañia <span class="text-danger">*</span></label>
                         <select
                             :class="(validarForm&&!company.tipos_companias_id)?'is-invalid':''"
                             class="form-control" id="selectTipoCompañia"
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-control-label">País de la compañía</label>
+                        <label class="form-control-label">País de la compañía <span class="text-danger">*</span></label>
                         <model-list-select
                             :list="paises"
                             v-model="paisSelect"
@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-control-label">Ciudad de la compañía</label>
+                        <label class="form-control-label">Ciudad de la compañía <span class="text-danger">*</span></label>
                         <model-list-select
                             :list="ciudades"
                             v-model="company.ciudades_id"
@@ -87,7 +87,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-control-label">¿Tiene sitio web?</label>
+                        <label class="form-control-label">¿Tiene sitio web? <span class="text-danger">*</span></label>
                         <select class="form-control" v-model="tieneEmpresa" id="selectPaginaWeb">
                             <!-- <option :value="null">[ Seleccione un evento ]</option> -->
                             <option :value="false">No</option>
@@ -96,14 +96,21 @@
                     </div>
                 </div>
                 <div class="col-md-6" id="sitio_web" v-if="tieneEmpresa">
-                    <div class="form-group">
-                        <label class="form-control-label">Sitio Web</label>
-                        <input class="form-control" type="text" placeholder="" v-model="company.sitioWeb" name="campany_sitio">
-                    </div>
+                    <input-component
+                        label="Sitio Web"
+                        id="txtCompanySitioWeb"
+                        pattern="url"
+                        errorMsg="Ingrese un sitio web valido"
+                        requiredMsg="El sitio web de la compañia es requerido"
+                        :required="true"
+                        :modelo="company.sitioWeb"
+                        clases=""
+                        @changeinput="company.sitioWeb = $event"
+                    ></input-component>
                 </div>
                 <div class="col-md-6" v-if="company.tipos_companias_id && company.tipos_companias_id !== 3">
                     <div class="form-group">
-                        <label class="form-control-label">Tipo de documento compañía</label>
+                        <label class="form-control-label">Tipo de documento compañía <span class="text-danger">*</span></label>
                         <select
                             :class="(validarForm&&!company.tipos_documentos_compania_id)?'is-invalid':''"
                             class="form-control" id="selectTipoEvento" name="campany_tipo_documento"
